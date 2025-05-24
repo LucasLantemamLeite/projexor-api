@@ -13,5 +13,5 @@ public class Name : ValueObject
         NameObject = name;
     }
 
-    private bool IsValidName(string name) => !string.IsNullOrEmpty(name);
+    private bool IsValidName(string name) => !string.IsNullOrWhiteSpace(name);
 }

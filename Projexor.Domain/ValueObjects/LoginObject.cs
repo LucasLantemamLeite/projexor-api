@@ -12,5 +12,5 @@ public class Login : ValueObject
         LoginValue = login;
     }
 
-    public bool IsValidLogin(string login) => !string.IsNullOrEmpty(login);
+    public bool IsValidLogin(string login) => !string.IsNullOrWhiteSpace(login);
 }
