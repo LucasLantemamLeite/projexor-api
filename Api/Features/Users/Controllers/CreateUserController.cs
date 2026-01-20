@@ -2,6 +2,7 @@ using Api.Data.Context;
 using Api.Features.Users.Auth;
 using Api.Features.Users.Models;
 using Api.Features.Users.Requests;
+using Api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,6 @@ public sealed class CreateUserController(AppDbContext context) : ControllerBase
 
         await context.SaveChangesAsync(cancellationToken);
 
-        return Created("", new { message = "Conta criada com sucesso." });
+        return Created("", new { message = "Conta criada com sucesso.", token = user.GenerateToken() });
     }
 }

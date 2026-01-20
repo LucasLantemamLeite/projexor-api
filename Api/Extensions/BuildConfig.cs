@@ -1,7 +1,7 @@
 using Api.Data.Context;
+using Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace Api.Extensions;
 
@@ -11,7 +11,7 @@ public static partial class Inject
     {
         public WebApplicationBuilder ApplyConfig()
         {
-            builder.Services.AddRouting();
+            TokenService.Key = builder.Configuration.GetValue<string>("JwtKey") ?? throw new NullReferenceException("Nenhuma JwtKey foi encontrada.");
 
             var connectionString = builder.Configuration.GetConnectionString("Default");
 
