@@ -6,4 +6,6 @@ builder.ApplyConfig();
 
 var app = builder.Build();
 
+app.ApplyConfig();
+
 app.Run();
