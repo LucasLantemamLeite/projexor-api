@@ -10,6 +10,7 @@ public sealed class Project : Entity
     public Guid OwnerId { get; private set; }
     public bool IsPersonal { get; private set; }
 
+    // Usado para instanciar novos Projetos
     public Project(string name, EStatus status, DateTime? deadline, Guid ownerId, bool isPersonal) : base(name)
     {
         Status = status;
@@ -18,7 +19,8 @@ public sealed class Project : Entity
         IsPersonal = isPersonal;
     }
 
-    public Project(Guid id, string name, DateTime created, bool active, EStatus status, DateTime? deadline, Guid ownerId, bool isPersonal) : base(id, name, created, active)
+    // Usado para instanciar Projetos salvos no banco
+    public Project(Guid id, string name, DateTime created, EStatus status, DateTime? deadline, Guid ownerId, bool isPersonal) : base(id, name, created)
     {
         Status = status;
         Deadline = deadline;
