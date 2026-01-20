@@ -15,7 +15,7 @@ public abstract class Entity
         Active = true;
     }
 
-    public Entity(string name, Guid id, DateTime created, bool active)
+    public Entity(Guid id, string name, DateTime created, bool active)
     {
         Id = id;
         Name = name;

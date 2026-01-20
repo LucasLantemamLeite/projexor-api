@@ -18,7 +18,7 @@ public sealed class Project : Entity
         IsPersonal = isPersonal;
     }
 
-    public Project(Guid id, string name, DateTime created, bool active, EStatus status, DateTime? deadline, Guid ownerId, bool isPersonal) : base(name, id, created, active)
+    public Project(Guid id, string name, DateTime created, bool active, EStatus status, DateTime? deadline, Guid ownerId, bool isPersonal) : base(id, name, created, active)
     {
         Status = status;
         Deadline = deadline;
