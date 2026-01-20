@@ -13,11 +13,7 @@ public static partial class Inject
         {
             TokenService.Key = builder.Configuration.GetValue<string>("JwtKey") ?? throw new NullReferenceException("Nenhuma JwtKey foi encontrada.");
 
-            var connectionString = builder.Configuration.GetConnectionString("Default");
-
-            builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
-
-            builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+            builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
             if (builder.Environment.IsDevelopment())
             {
@@ -27,7 +23,8 @@ public static partial class Inject
 
             builder.Services.AddHealthChecks();
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
 
             return builder;
         }
