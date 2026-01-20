@@ -9,11 +9,18 @@ public sealed class User : Entity
     public string Password { get; private set; }
 
     // Usado para instanciar novos usuários
-    public User(string name) : base(name) { }
+    public User(string name, string email, string phone, string password) : base(name)
+    {
+        Email = email;
+        Phone = phone;
+        Password = password;
+    }
 
     // Usado para instanciar usuários salvos no banco
-    public User(Guid id, string name, DateTime created) : base(id, name, created)
+    public User(Guid id, string name, DateTime created, string email, string phone, string password) : base(id, name, created)
     {
-
+        Email = email;
+        Phone = phone;
+        Password = password;
     }
 }
