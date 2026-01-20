@@ -1,0 +1,28 @@
+using Api.Features.Projects.Enums;
+using Api.Shared.Base;
+
+namespace Api.Features.Projects.Models;
+
+public sealed class Project : Entity
+{
+    public EStatus Status { get; private set; }
+    public DateTime? Deadline { get; private set; }
+    public Guid OwnerId { get; private set; }
+    public bool IsPersonal { get; private set; }
+
+    public Project(string name, EStatus status, DateTime? deadline, Guid ownerId, bool isPersonal) : base(name)
+    {
+        Status = status;
+        Deadline = deadline;
+        OwnerId = ownerId;
+        IsPersonal = isPersonal;
+    }
+
+    public Project(Guid id, string name, DateTime created, bool active, EStatus status, DateTime? deadline, Guid ownerId, bool isPersonal) : base(name, id, created, active)
+    {
+        Status = status;
+        Deadline = deadline;
+        OwnerId = ownerId;
+        IsPersonal = isPersonal;
+    }
+}
