@@ -19,7 +19,7 @@ public sealed class ProjectMap : IEntityTypeConfiguration<Project>
 
         builder.Property(x => x.Name)
             .HasColumnName("Name")
-            .HasColumnType("nvarchar(100)")
+            .HasColumnType("nvarchar(30)")
             .IsRequired();
 
         builder.Property(x => x.Created)
@@ -45,5 +45,15 @@ public sealed class ProjectMap : IEntityTypeConfiguration<Project>
             .HasColumnName("IsPersonal")
             .HasColumnType("bit")
             .IsRequired();
+
+        builder.HasOne(x => x.User)
+            .WithMany(x => x.Projects)
+            .HasForeignKey(x => x.OwnerId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne(x => x.Group)
+            .WithMany(x => x.Projects)
+            .HasForeignKey(x => x.OwnerId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
