@@ -21,6 +21,8 @@ public static class TokenService
             {
                 Expires = DateTime.UtcNow.AddHours(4),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = "ServerApi",
+                Audience = "ClientApi",
 
                 Subject = new ClaimsIdentity([
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
