@@ -3,6 +3,7 @@ using Api.Data.Context;
 using Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Api.Extensions;
@@ -29,7 +30,7 @@ public static partial class Inject
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(TokenService.Key)),
                     RequireSignedTokens = true,
                     ValidTypes = ["JWT"],
-                    ValidAlgorithms = [SecurityAlgorithms.HmacSha256Signature],
+                    ValidAlgorithms = [SecurityAlgorithms.HmacSha256],
                     ValidateIssuer = true,
                     ValidIssuer = "ServerApi",
                     ValidateAudience = true,
@@ -40,6 +41,8 @@ public static partial class Inject
                     RequireExpirationTime = true,
                 };
             });
+
+            builder.Services.AddAuthorization();
 
             builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 

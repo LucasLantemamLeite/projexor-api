@@ -23,6 +23,7 @@ public static partial class Inject
             app.UseHealthChecks("/v1/health");
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapControllers();
 
