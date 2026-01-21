@@ -1,6 +1,4 @@
 using Api.Middlewares;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 
 namespace Api.Extensions;
 
@@ -23,6 +21,8 @@ public static partial class Inject
             }
 
             app.UseHealthChecks("/v1/health");
+
+            app.UseAuthentication();
 
             app.MapControllers();
 
