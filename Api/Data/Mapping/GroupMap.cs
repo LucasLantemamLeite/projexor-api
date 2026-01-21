@@ -26,5 +26,10 @@ public sealed class GroupMap : IEntityTypeConfiguration<Group>
             .HasColumnName("Created")
             .HasColumnType("datetime2")
             .IsRequired();
+
+        builder.HasMany(x => x.UserGroups)
+            .WithOne(x => x.Group)
+            .HasForeignKey(x => x.GroupId)
+            .IsRequired();
     }
 }
