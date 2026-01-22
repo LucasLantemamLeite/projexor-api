@@ -1,4 +1,3 @@
-using Api.Features.Groups.Models;
 using Api.Features.Projects.Enums;
 using Api.Features.Users.Models;
 using Api.Shared.Base;
@@ -13,7 +12,6 @@ public sealed class Project : Entity
     public Guid OwnerId { get; private set; }
     public bool IsPersonal { get; private set; }
     public User? User { get; private set; }
-    public Group? Group { get; private set; }
 
     // Usado para instanciar novos Projetos
     public Project(string name, EStatus status, DateTime? deadline, Guid ownerId, bool isPersonal)

@@ -47,10 +47,5 @@ public sealed class UserMap : IEntityTypeConfiguration<User>
             .HasColumnName("Password")
             .HasColumnType("nvarchar(255)")
             .IsRequired();
-
-        builder.HasMany(x => x.UserGroups)
-            .WithOne(x => x.User)
-            .HasForeignKey(x => x.UserId)
-            .IsRequired();
     }
 }

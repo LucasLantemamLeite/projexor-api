@@ -50,10 +50,5 @@ public sealed class ProjectMap : IEntityTypeConfiguration<Project>
             .WithMany(x => x.Projects)
             .HasForeignKey(x => x.OwnerId)
             .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasOne(x => x.Group)
-            .WithMany(x => x.Projects)
-            .HasForeignKey(x => x.OwnerId)
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }
