@@ -2,7 +2,7 @@ namespace Api.Middlewares;
 
 public sealed class ExceptionMiddleware(RequestDelegate next)
 {
-    public async Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context, ILogger<ExceptionMiddleware> logger)
     {
         try
         {
@@ -11,8 +11,10 @@ public sealed class ExceptionMiddleware(RequestDelegate next)
 
         catch (OperationCanceledException) { }
 
-        catch
+        catch (Exception ex)
         {
+            logger.LogInformation(ex, "Exception Capturada");
+
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
             context.Response.ContentType = "application/json";
 
