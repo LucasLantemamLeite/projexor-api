@@ -1,7 +1,7 @@
 using Api.Data.Context;
 using Api.Features.Users.Auth;
+using Api.Features.Users.Requests;
 using Api.Services;
-using Api.Shared.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
