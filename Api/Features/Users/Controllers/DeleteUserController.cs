@@ -24,12 +24,12 @@ public sealed class DeleteUserController(AppDbContext context) : ControllerBase
             return UnprocessableEntity(ModelState);
 
         if (!Guid.TryParse(idClaim, out var userId))
-            return Unauthorized(new { message = "" });
+            return Unauthorized(new { message = "Id inválido." });
 
         var user = await context.Users.SingleOrDefaultAsync(x => x.Id == userId, cancellationToken);
 
         if (user is null || !Hasher.VerifyHash(user.Password, passwordRequest.Password))
-            return NotFound(new { message = "" });
+            return Unauthorized(new { message = "Senha incorreta." });
 
         context.Users.Remove(user);
 
